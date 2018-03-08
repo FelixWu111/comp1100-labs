@@ -18,9 +18,13 @@ volume = cube edgeLength
 surfaceAreaWithRadius :: Float -> Float
 surfaceAreaWithRadius r = 4.0 * pi * r^2
 
-areaOfTriangle :: Float -> Float -> Float -> Float
-areaOfTriangle a b c = sqrt (s * (s - a) * (s - b) * (s - c))
+areaOfTriangle :: Float -> Float -> Float -> Maybe Float
+areaOfTriangle a b c
+ | a + b <= c || a +c <= b || c + b <= a = Nothing
+ | a + b > c || a + c > b || b + c > a = Just v
+ |otherwise = error "No solution"
                        where s = (a + b + c)/2
+                             v = sqrt (s * (s - a) * (s - b) * (s - c))
 
 uglyQuadraticFormula :: Float -> Float -> Float -> (Float, Float)
 uglyQuadraticFormula a b c = ((-b + sqrt (b*b - 4*a*c))/ (2*a),
