@@ -53,10 +53,10 @@ quadrant x y
 
 myatan2 :: Float -> Float -> Float
 myatan2 y x
- | x > 0 && y >= 0 = (y / x)
- | x > 0 && y < 0 = (y / x)
- | x < 0 && y >= 0 = (y / x) + pi
- | x < 0 && y < 0 = (y / x) - pi
+ | x > 0 && y >= 0 = atan (y / x)
+ | x > 0 && y < 0 = atan (y / x)
+ | x < 0 && y >= 0 = atan (y / x) + pi
+ | x < 0 && y < 0 = atan (y / x) - pi
  | x == 0 && y > 0 = pi/2
  | x == 0 && y < 0 = -pi/2
  | x == 0 && y == 0 = undefined
