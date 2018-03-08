@@ -36,3 +36,28 @@ prettyQuadraticFormula a b c = ((-b + sqrtDiscriminant) / denomintor,
                                where
                                  sqrtDiscriminant = sqrt (b*b - 4*a*c)
                                  denomintor = 2*a
+
+data Quadrants = Origin |QuadrantI | QuadrantII | QuadrantIII | QuadrantIV |XAxisPositive | XAxisNegative | YAxisPositive | YAxisNegative
+   deriving (Show, Eq)
+quadrant :: Float -> Float -> Quadrants
+quadrant x y
+ | x > 0 && y > 0 = QuadrantI
+ | x > 0 && y < 0 = QuadrantIV
+ | x < 0 && y > 0 = QuadrantII
+ | x < 0 && y < 0 = QuadrantIII
+ | x == 0 && y > 0 = YAxisPositive
+ | x == 0 && y < 0 = YAxisNegative
+ | x > 0 && y == 0 = XAxisPositive
+ | x < 0 && y == 0 = XAxisNegative
+ | x == 0 && y == 0 = Origin
+
+myatan2 :: Float -> Float -> Float
+myatan2 y x
+ | x > 0 && y >= 0 = (y / x)
+ | x > 0 && y < 0 = (y / x)
+ | x < 0 && y >= 0 = (y / x) + pi
+ | x < 0 && y < 0 = (y / x) - pi
+ | x == 0 && y > 0 = pi/2
+ | x == 0 && y < 0 = -pi/2
+ | x == 0 && y == 0 = undefined
+
