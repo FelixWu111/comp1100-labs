@@ -1,7 +1,7 @@
 import CodeWorld
 
 tree :: Integer -> Picture
-tree 0 = blank
+tree 0 = colored yellow (solidCircle 0.2)
 tree n =
   polyline [(0,0),(0,1)] &
   translated 0 1
