@@ -10,7 +10,7 @@ tree n b =
 
 -- TODO: Make the tree bloom by using something else in place of 'blank'
 myAnimation :: Double -> Picture
-myAnimation t = tree 8 blank
+myAnimation t = tree 8 (colored yellow (solidCircle (atan t*pi/20)))
 
 main :: IO ()
 main = animationOf myAnimation
