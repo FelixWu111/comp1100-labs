@@ -23,7 +23,7 @@ noInts = undefined -- TODO
 -- >>> headInt NoInts
 -- ...
 -- >>> HeadInt ints
--- Just 1
+-- 1
 headInt :: Ints -> Int
 headInt = undefined -- TODO
 
