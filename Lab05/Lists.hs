@@ -1,16 +1,16 @@
 module Lists where
 
 -- TODO: Fix the following errors by rewriting each expression
-list1 = "A" : " reasonably broken string"
-list2 = [1,2,3] : [4,5,6] : [7,8,9]
-list3 = (4.0, "Teddy") : (pi, "Duck")
-list4 = 9:8:[]:7:6:[]:[]
+list1 = 'A' : " reasonably broken string"
+list2 =  [1,2,3] ++ [4,5,6] ++ [7,8,9]
+list3 = (4.0, "Teddy") : [(pi, "Duck")]
+list4 = 9:8:7:6:[]
 
 -- TODO: Fix the following errors only by adding new characters
-list1' = "A" : " reasonably broken string"
-list2' = [1,2,3] : [4,5,6] : [7,8,9]
-list3' = (4.0, "Teddy") : (pi, "Duck")
-list4' = 9:8:[]:7:6:[]:[]
+list1' = "A" : " reasonably broken string": []
+list2' = [1,2,3] : [4,5,6] : [7,8,9]:[]
+list3' = (4.0, "Teddy") : (pi, "Duck"):[]
+list4' = 9:8:[] ++ 7:6:[] ++ []
 
 -- | deconstruct separates a list into its head and tail.
 -- | The head of an empty list is Nothing, and its tail is the empty list.
@@ -27,8 +27,8 @@ list4' = 9:8:[]:7:6:[]:[]
 --
 deconstruct :: [a] -> (Maybe a, [a])
 deconstruct list = case list of
-  []   -> (Nothing, [])
-  x:xs -> (Just x, xs)
+                          []   -> (Nothing, [])
+                          x:xs -> (Just x, xs)
 
 -- | swapFirstTwoElements
 --
@@ -40,8 +40,9 @@ deconstruct list = case list of
 -- >>> swapFirstTwoElements "abcd"
 -- "bacd"
 swapFirstTwoElements :: [a] -> [a]
-swapFirstTwoElements = undefined -- TODO
-
+swapFirstTwoElements x = case x of
+                               [] -> []
+                               a:b:xs->b:a:xs
 -- | oddsAndEvens
 --
 -- Examples:
@@ -58,7 +59,10 @@ swapFirstTwoElements = undefined -- TODO
 --
 -- prop> oddsAndEvens [1..n | n/2 == 0]
 oddsAndEvens :: [Integer] -> (Int,Int)
-oddsAndEvens = undefined -- TODO
+oddsAndEvens [x:xs] = case x of
+                  oddch  -> ( )
+
+
 
 --
 -- Pattern matching and evaluation
