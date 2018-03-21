@@ -60,11 +60,10 @@ swapFirstTwoElements x = case x of
 -- prop> oddsAndEvens [1..n | n/2 == 0]
 oddsAndEvens :: [Integer] -> (Int,Int)
 oddsAndEvens [x:xs] = case x of
-                  oddch  -> ( )
+                  []-> (0,0)
+                  [0] -> (0,1)
 
 
-
---
 -- Pattern matching and evaluation
 --
 type Expression = [Token]

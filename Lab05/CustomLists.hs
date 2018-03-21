@@ -41,8 +41,7 @@ headInt y = case y of
 tailInts :: Ints -> Ints
 tailInts z = case z of
                                NoInts -> undefined
-                               (SomeInts _ NoInts) -> NoInts
-                               ints -> SomeInts 2 (SomeInts 3 NoInts)
+                               (SomeInts _ a) -> a
 
 -- | A list of Char elements
 data Chars = NoChars | SomeChars Char Chars
@@ -186,7 +185,7 @@ lastList x = case x of
 -- 3
 lengthList :: List a -> Int
 lengthList x = case x of
-                                  Empty -> undefined
+                                  Empty -> 0
                                   Cons x' Empty -> 1
                                   Cons _ x' -> 1 + lengthList x'
 -- | addFirst
@@ -214,9 +213,9 @@ addLast x xs = case xs of
                             Cons y x'-> Cons y (addLast x (tailList (Cons y x')))
 -- | Convert from/to builtin list to/from our custom list
 -- prop> fromList (toList l) == l
-fromList :: [a] -> List a
-fromList [] = Empty
-fromList (x:xs) = Cons x (fromList xs)
-toList :: List a -> [a]
-toList Empty = []
-toList (Cons x xs) = x:(toList xs)
+fromList :: List a -> [a]
+fromList Empty = []
+fromList (Cons x xs) = x:(fromList xs)
+toList :: [a] -> List a
+toList [] = Empty
+toList (x:xs) = Cons x (toList xs)
