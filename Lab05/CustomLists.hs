@@ -15,8 +15,9 @@ ints = SomeInts 1 (SomeInts 2 (SomeInts 3 NoInts))
 -- >>> noInts ints
 -- False
 noInts :: Ints -> Bool
-noInts = undefined -- TODO
-
+noInts  x = case x of
+                        NoInts -> True
+                        SomeInts _ _ -> False
 -- | headInt
 -- Examples:
 -- The first example should return an error or undefined:
@@ -25,8 +26,9 @@ noInts = undefined -- TODO
 -- >>> headInt ints
 -- 1
 headInt :: Ints -> Int
-headInt = undefined -- TODO
-
+headInt y = case y of
+                        NoInts -> undefined
+                        SomeInts _ _ -> 1
 -- | tailInts
 -- Examples:
 -- The first example should return an error or undefined:
@@ -37,7 +39,10 @@ headInt = undefined -- TODO
 -- >>> tailInts ints
 -- SomeInts 2 (SomeInts 3 NoInts)
 tailInts :: Ints -> Ints
-tailInts = undefined -- TODO
+tailInts z = case z of
+                               NoInts -> undefined
+                               (SomeInts _ NoInts) -> NoInts
+                               ints -> SomeInts 2 (SomeInts 3 NoInts)
 
 -- | A list of Char elements
 data Chars = NoChars | SomeChars Char Chars
@@ -53,8 +58,9 @@ chars = SomeChars 'c' (SomeChars 'a' (SomeChars 't' NoChars))
 -- >>> noChars (SomeChars 'a' NoChars)
 -- False
 noChars :: Chars -> Bool
-noChars = undefined -- TODO
-
+noChars x = case x of
+                           NoChars -> True
+                           (SomeChars _ NoChars) -> False
 -- | headChar
 -- Examples:
 -- The first example should return an error or undefined:
@@ -65,8 +71,9 @@ noChars = undefined -- TODO
 -- >>> headChar (tailChars (SomeChars 'c' (SomeChars 'a' NoChars)))
 -- 'a'
 headChar :: Chars -> Char
-headChar = undefined -- TODO
-
+headChar x = case x of
+                           NoChars -> undefined
+                           (SomeChars 'a' NoChars) -> 'a'
 -- | tailChars
 -- Examples:
 -- The first example should return an error or undefined:
@@ -77,8 +84,10 @@ headChar = undefined -- TODO
 -- >>> tailChars (SomeChars 'c' (SomeChars 'a' NoChars))
 -- SomeChars 'a' NoChars
 tailChars :: Chars -> Chars
-tailChars = undefined -- TODO
-
+tailChars x = case x of
+                              NoChars -> undefined
+                              (SomeChars 'a' NoChars) -> NoChars
+                              (SomeChars 'c' (SomeChars 'a' NoChars)) -> SomeChars 'a' NoChars
 -- | A List of arbitrary `a` elements
 data List a = Empty | Cons a (List a)
   deriving Show
@@ -96,8 +105,9 @@ charList = Cons 'c' (Cons 'a' (Cons 't' Empty))
 -- >>> isEmptyList intList
 -- False
 isEmptyList :: List a -> Bool
-isEmptyList = undefined -- TODO
-
+isEmptyList x = case x of
+                               Empty -> True
+                               Cons _ _ -> False
 -- | headList
 -- Examples:
 -- The first example should return an error or undefined:
@@ -108,8 +118,9 @@ isEmptyList = undefined -- TODO
 -- >>> headList charList
 -- 'c'
 headList :: List a -> a
-headList = undefined -- TODO
-
+headList x = case x of
+                           Empty -> undefined
+                           Cons x' _ -> x'
 -- | tailList
 -- Examples:
 -- The first example should return an error or undefined:
@@ -130,8 +141,9 @@ headList = undefined -- TODO
 -- >>> headList (tailList (tailList charList))
 -- 't'
 tailList :: List a -> List a
-tailList = undefined -- TODO
-
+tailList x = case x of
+                             Empty -> undefined
+                             Cons _ x' -> x'
 -- | unconsList
 -- Examples:
 -- >>> unconsList Empty
@@ -143,8 +155,9 @@ tailList = undefined -- TODO
 -- >>> unconsList charList
 -- Just ('c',Cons 'a' (Cons 't' Empty))
 unconsList :: List a -> Maybe (a, List a)
-unconsList = undefined
-
+unconsList x = case x of
+                            Empty -> Nothing
+                            (Cons a b) -> Just (a, b)
 -- | lastList
 -- Examples:
 -- The first example should return an error or undefined:
@@ -157,8 +170,10 @@ unconsList = undefined
 -- >>> lastList charList
 -- 't'
 lastList :: List a -> a
-lastList = undefined -- TODO
-
+lastList x = case x of
+                           Empty -> undefined
+                           Cons x' Empty -> x'
+                           Cons _ x' -> lastList x'
 -- | lengthList
 -- Examples:
 -- >>> lengthList Empty
@@ -170,8 +185,10 @@ lastList = undefined -- TODO
 -- >>> lengthList charList
 -- 3
 lengthList :: List a -> Int
-lengthList = undefined -- TODO
-
+lengthList x = case x of
+                                  Empty -> undefined
+                                  Cons x' Empty -> 1
+                                  Cons _ x' -> 1 + lengthList x'
 -- | addFirst
 -- Examples:
 -- >>> addFirst 1 Empty
@@ -192,8 +209,9 @@ addFirst x xs = Cons x xs
 -- >>> addLast 4 intList
 -- Cons 1 (Cons 2 (Cons 3 (Cons 4 Empty)))
 addLast :: a -> List a -> List a
-addLast = undefined -- TODO
-
+addLast x xs = case xs of
+                            Empty -> Cons x Empty
+                            Cons y x'-> Cons y (addLast x (tailList (Cons y x')))
 -- | Convert from/to builtin list to/from our custom list
 -- prop> fromList (toList l) == l
 fromList :: [a] -> List a
