@@ -48,23 +48,36 @@ factorial1 n = accumulate n 1
     accumulate 0 a = a
     accumulate x a = accumulate (x-1) (x * a)
 
-data Creatures = Salmon | Puffin | Fox | Bear | Human
+data Creature = Salmon | Puffin | Fox | Bear | Human
     deriving (Eq, Enum, Show)
 
-happyCreatures :: Creatures -> String
-happyCreatures Salmon = "the " ++ show Salmon ++ " who is always happy"
-happyCreatures creature = "the " ++ show creature ++ " who dreams of eating "
-    ++ happyCreatures (pred creature)
-    ++ " which makes the " ++ show creature ++ " happy"
+happyCreature :: Creature -> String
+happyCreature creature = case creature of
+  Salmon -> "the " ++ show creature ++ " who is always happy"
+  _      -> "the " ++ show creature ++ " who dreams of eating "
+            ++ happyCreature (pred creature)
+            ++ " which makes the " ++ show creature ++ " happy"
 
+-- | Multiply the elements of a list
+-- >>> product' [2,3,4]
+-- 24
 product' :: (Num a) => [a] -> a
 product' = undefined -- TODO
 
+-- | Convert a String to all upper case
+-- >>> convertToUpperCase "xYzZy"
+-- "XYZZY"
 convertToUpperCase :: String -> String
 convertToUpperCase = undefined -- TODO
 
+-- | Reverse the elements of a list
+-- >>> invert [1,2,3,4]
+-- [4,3,2,1]
 invert :: [a] -> [a]
 invert = undefined -- TODO
 
+-- | Return all subsequences of the list that add up to the target sum
+-- >>> rucksack [3,7,5,9,13,17] 30
+-- [[13,17],[3,5,9,13]]
 rucksack :: [Integer] -> Integer -> [[Integer]]
 rucksack = undefined -- TODO
