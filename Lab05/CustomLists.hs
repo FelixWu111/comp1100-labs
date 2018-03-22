@@ -22,8 +22,8 @@ noInts = undefined -- TODO
 -- The first example should return an error or undefined:
 -- >>> headInt NoInts
 -- ...
--- >>> HeadInt ints
--- Just 1
+-- >>> headInt ints
+-- 1
 headInt :: Ints -> Int
 headInt = undefined -- TODO
 
