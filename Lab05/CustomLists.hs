@@ -72,7 +72,7 @@ noChars x = case x of
 headChar :: Chars -> Char
 headChar x = case x of
                            NoChars -> undefined
-                           (SomeChars 'a' NoChars) -> 'a'
+                           (SomeChars a' _) -> a'
 -- | tailChars
 -- Examples:
 -- The first example should return an error or undefined:

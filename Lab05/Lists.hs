@@ -59,9 +59,23 @@ swapFirstTwoElements x = case x of
 --
 -- prop> oddsAndEvens [1..n | n/2 == 0]
 oddsAndEvens :: [Integer] -> (Int,Int)
-oddsAndEvens [x:xs] = case x of
-                  []-> (0,0)
-                  [0] -> (0,1)
+oddsAndEvens x = case x of
+    []-> (0,0)
+    [0] -> (0,1)
+    (x:xs) -> (oDD (x:xs),eVEN (x:xs))
+        where oDD :: [Integer] -> Int
+              oDD list = case list of
+                       [] -> 0
+                       x:xs
+                          | x `mod` 2 == 1 -> 1 + oDD xs
+                          | x `mod` 2 == 0 -> oDD xs
+              eVEN :: [Integer] -> Int
+              eVEN list = case list of
+                       [] -> 0
+                       x:xs
+                           |x `mod` 2 == 1 -> eVEN xs
+                           |x `mod` 2 == 0 -> 1 + eVEN xs
+
 
 
 -- Pattern matching and evaluation
