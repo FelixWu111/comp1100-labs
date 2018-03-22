@@ -195,6 +195,7 @@ addLast :: a -> List a -> List a
 addLast = undefined -- TODO
 
 -- | Convert from/to builtin list to/from our custom list
+-- prop> toList (fromList l) == l
 fromList :: [a] -> List a
 fromList [] = Empty
 fromList (x:xs) = Cons x (fromList xs)
