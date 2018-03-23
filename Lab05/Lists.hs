@@ -123,6 +123,21 @@ evalStringExpression s = showExpression (eval (tokenise s))
 -- [Num 0.0]
 --
 -- Start by writing a better type signature before giving a definition of eval:
-eval :: a -- TODO
-eval = undefined -- TODO
+
+eval :: Expression -> Expression
+eval [Num x , Plus , Minus , Num y ] = [Num(x-y)]
+eval [Num x , Minus ,Minus, Num y ] = [Num(x+y)]
+eval [Num x , op, Num y] = case op of
+                                Plus -> [Num(x+y)]
+                                Minus -> [Num(x-y)]
+eval [Num x ,op, Num y , nextOp , remainingExp] = case op of
+                                    Plus ->  eval [Num(x+y) , nextOp , remainingExp]
+                                    Minus -> eval [Num(x-y) , nextOp , remainingExp]
+eval [Num a, Plus, Minus, Num b, Minus, Num c, Plus, Num d]=  [Num(a-b-c+d)]
+
+
+
+
+
+
 
