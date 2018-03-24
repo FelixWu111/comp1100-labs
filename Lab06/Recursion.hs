@@ -15,7 +15,7 @@ module Recursion where
 -- 10
 -- >>> sum1 [-1,1]
 -- 0
-sum1 = undefined
+sum1 = undefined -- TODO
 
 -- | sum2 : Compute the sum of the elements of a list of Integer
 -- This time, use three cases:
@@ -28,7 +28,7 @@ sum1 = undefined
 -- prop> sum1 l == sum2 l
 --
 sum2 :: (Num a) => [a] -> a
-sum2 = undefined
+sum2 = undefined -- TODO
 
 -- | sum3 :
 sum3 :: (Num a) => [a] -> a
@@ -59,8 +59,7 @@ factorial1 :: Integer -> Integer
 factorial1 n = accumulate 1 n
   where
     accumulate :: Integer -> Integer -> Integer
-    accumulate a 0 = a
-    accumulate a x = accumulate (x * a) (x-1)
+    accumulate = undefined -- TODO
 
 data Creature = Salmon | Puffin | Fox | Bear | Human
     deriving (Eq, Enum, Show)
