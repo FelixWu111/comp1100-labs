@@ -55,8 +55,8 @@ steppingTheWrongDirection 0 = 1
 steppingTheWrongDirection n | n > 0 = n * steppingTheWrongDirection (n+1)
 steppingTheWrongDirection _ = error "undefined for negative integers"
 
-factorial1 :: Integer -> Integer
-factorial1 n = accumulate 1 n
+factorial2 :: Integer -> Integer
+factorial2 n = accumulate 1 n
   where
     accumulate :: Integer -> Integer -> Integer
     accumulate = undefined -- TODO
