@@ -1,5 +1,7 @@
 module Recursion where
 
+import Prelude hiding (product)
+
 {-# ANN module ("HLint: ignore Eta reduce"::String) #-}
 {-# ANN module ("HLint: ignore Use foldl"::String) #-}
 {-# ANN module ("HLint: ignore Use list literal pattern"::String) #-}
@@ -72,10 +74,10 @@ happyCreature creature = case creature of
             ++ " which makes the " ++ show creature ++ " happy"
 
 -- | Multiply the elements of a list
--- >>> product' [2,3,4]
+-- >>> product [2,3,4]
 -- 24
-product' :: (Num a) => [a] -> a
-product' = undefined -- TODO
+product :: (Num a) => [a] -> a
+product = undefined -- TODO
 
 -- | Convert a String to all upper case
 -- >>> convertToUpperCase "xYzZy"
