@@ -56,11 +56,11 @@ steppingTheWrongDirection n | n > 0 = n * steppingTheWrongDirection (n+1)
 steppingTheWrongDirection _ = error "undefined for negative integers"
 
 factorial1 :: Integer -> Integer
-factorial1 n = accumulate n 1
+factorial1 n = accumulate 1 n
   where
     accumulate :: Integer -> Integer -> Integer
-    accumulate 0 a = a
-    accumulate x a = accumulate (x-1) (x * a)
+    accumulate a 0 = a
+    accumulate a x = accumulate (x * a) (x-1)
 
 data Creature = Salmon | Puffin | Fox | Bear | Human
     deriving (Eq, Enum, Show)
