@@ -4,19 +4,33 @@ module Recursion where
 {-# ANN module ("HLint: ignore Use foldl"::String) #-}
 {-# ANN module ("HLint: ignore Use list literal pattern"::String) #-}
 
-sum1 :: [Integer] -> Integer
-sum1 list =
-  case list of
-    []   -> 0
-    x:xs -> x + sum1 xs
+-- | sum1 : Compute the sum of the elements of a list of Integer
+-- Use a straightforward primtive recursion to compute the sum,
+-- with one case dealing with empty lists, and the other with non-empty lists.
+--
+-- Examples:
+-- >>> sum1 []
+-- 0
+-- >>> sum1 [1,2,3,4]
+-- 10
+-- >>> sum1 [-1,1]
+-- 0
+sum1 = undefined
 
+-- | sum2 : Compute the sum of the elements of a list of Integer
+-- This time, use three cases:
+-- one case for the empty list, returning 0,
+-- a second case for a list of at least one element, returning x,
+-- and a third case for a list of at least two elements x and y, plus a tail zs,
+-- returning the result of invoking sum2 recursively on the (one shorter) list
+-- constructed with (x+y) as head and zs as tail.
+--
+-- prop> sum1 l == sum2 l
+--
 sum2 :: (Num a) => [a] -> a
-sum2 list =
-  case list of
-    []       -> 0
-    x:[]     -> x
-    x:(y:zs) -> sum2((x+y):zs)
+sum2 = undefined
 
+-- | sum3 :
 sum3 :: (Num a) => [a] -> a
 sum3 list = accumulate 0 list
   where
