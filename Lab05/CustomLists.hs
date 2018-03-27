@@ -89,7 +89,7 @@ tailChars x = case x of
                               (SomeChars 'c' (SomeChars 'a' NoChars)) -> SomeChars 'a' NoChars
 -- | A List of arbitrary `a` elements
 data List a = Empty | Cons a (List a)
-  deriving Show
+  deriving (Show,Eq)
 
 intList :: List Int
 intList = Cons 1 (Cons 2 (Cons 3 Empty))
@@ -212,6 +212,7 @@ addLast x xs = case xs of
                             Empty -> Cons x Empty
                             Cons y x'-> Cons y (addLast x (tailList (Cons y x')))
 -- | Convert from/to builtin list to/from our custom list
+<<<<<<< HEAD
 -- prop> fromList (toList l) == l
 fromList :: List a -> [a]
 fromList Empty = []
@@ -219,3 +220,12 @@ fromList (Cons x xs) = x:(fromList xs)
 toList :: [a] -> List a
 toList [] = Empty
 toList (x:xs) = Cons x (toList xs)
+=======
+-- prop> toList (fromList l) == l
+fromList :: [a] -> List a
+fromList [] = Empty
+fromList (x:xs) = Cons x (fromList xs)
+toList :: List a -> [a]
+toList Empty = []
+toList (Cons x xs) = x:(toList xs)
+>>>>>>> upstream/master
