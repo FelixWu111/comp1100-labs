@@ -1,6 +1,7 @@
 module Recursion where
 
 import Prelude hiding (product)
+import Data.Char
 
 {-# ANN module ("HLint: ignore Eta reduce"::String) #-}
 {-# ANN module ("HLint: ignore Use foldl"::String) #-}
@@ -17,7 +18,12 @@ import Prelude hiding (product)
 -- 10
 -- >>> sum1 [-1,1]
 -- 0
-sum1 = undefined -- TODO
+sum1 :: [Integer] -> Integer
+sum1 x = case x of
+         [] -> 0
+         [x] -> x
+         (x:xs)-> x + sum1 xs
+
 
 -- | sum2 : Compute the sum of the elements of a list of Integer
 -- This time, use three cases:
@@ -30,7 +36,10 @@ sum1 = undefined -- TODO
 -- prop> sum1 l == sum2 l
 --
 sum2 :: (Num a) => [a] -> a
-sum2 = undefined -- TODO
+sum2 x =case x of
+             [] -> 0
+             [x] -> x
+             x:y:xs-> (x + y) + sum2 xs
 
 -- | sum3 :
 sum3 :: (Num a) => [a] -> a
@@ -61,7 +70,9 @@ factorial2 :: Integer -> Integer
 factorial2 n = accumulate 1 n
   where
     accumulate :: Integer -> Integer -> Integer
-    accumulate = undefined -- TODO
+    accumulate 1 x
+                     |x==1 = 1
+                     |x > 1 = x * accumulate 1 (x-1)
 
 data Creature = Salmon | Puffin | Fox | Bear | Human
     deriving (Eq, Enum, Show)
@@ -77,22 +88,31 @@ happyCreature creature = case creature of
 -- >>> product [2,3,4]
 -- 24
 product :: (Num a) => [a] -> a
-product = undefined -- TODO
+product x =case x of
+             []-> 1
+             [x]-> x
+             (x:xs) -> x * product xs
 
 -- | Convert a String to all upper case
 -- >>> convertToUpperCase "xYzZy"
 -- "XYZZY"
 convertToUpperCase :: String -> String
-convertToUpperCase = undefined -- TODO
+convertToUpperCase x = case x of
+                      ""-> ""
+                      (x:xs) -> toUpper x : convertToUpperCase xs
+
 
 -- | Reverse the elements of a list
 -- >>> invert [1,2,3,4]
 -- [4,3,2,1]
 invert :: [a] -> [a]
-invert = undefined -- TODO
+invert x = case x of
+              [] -> []
+              (xs:a)-> a : invert xs
 
 -- | Return all subsequences of the list that add up to the target sum
 -- >>> rucksack [3,7,5,9,13,17] 30
 -- [[13,17],[3,5,9,13]]
 rucksack :: [Integer] -> Integer -> [[Integer]]
-rucksack = undefined -- TODO
+rucksack (x:xs) y =undefined -- TODO
+
