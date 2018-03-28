@@ -108,7 +108,7 @@ convertToUpperCase x = case x of
 invert :: [a] -> [a]
 invert x = case x of
               [] -> []
-              (xs:a)-> a : invert xs
+              (x:xs)-> invert xs ++ [x]
 
 -- | Return all subsequences of the list that add up to the target sum
 -- >>> rucksack [3,7,5,9,13,17] 30
