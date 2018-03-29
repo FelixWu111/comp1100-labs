@@ -70,9 +70,8 @@ factorial2 :: Integer -> Integer
 factorial2 n = accumulate 1 n
   where
     accumulate :: Integer -> Integer -> Integer
-    accumulate 1 x
-                     |x==1 = 1
-                     |x > 1 = x * accumulate 1 (x-1)
+    accumulate a 1 = a
+    accumulate a c = accumulate (a*c) (c-1)
 
 data Creature = Salmon | Puffin | Fox | Bear | Human
     deriving (Eq, Enum, Show)
