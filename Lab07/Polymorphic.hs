@@ -2,6 +2,7 @@ module Polymorphic where
 
 import Data.Complex
 import Data.Ratio
+import Prelude hiding (product)
 
 stringLength :: String -> Int
 stringLength = undefined -- TODO
