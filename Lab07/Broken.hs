@@ -47,9 +47,10 @@ reverseOf list = case list of
 -- False
 isPalindrome :: String -> Bool
 isPalindrome xs
+        | xs == "" = True
         | xs == reverseOf xs = True
         | otherwise = False
-isPalindrome "" = True
+
 
 -- | Tests whether each element is smaller or equal to the next element.
 -- Examples:
