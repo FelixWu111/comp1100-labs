@@ -21,15 +21,15 @@ module Broken where
 -- "cba"
 reverseOf :: String -> String
 reverseOf list = case list of
-  [] = []
-  c: cs -> concatenate (reverseOf cs) [c]
+  [] -> []
+  c: cs -> concatenate (reverseOf cs)  [c]
   where
     -- Concatenates two lists
     -- (adds the second at the end of the first)
     concatenate :: String -> String -> String
     concatenate s1 s2 = case s2 of
       []    -> s1
-      c: cs -> c concatenate cs s1
+      c: cs -> concatenate s1 cs ++ [c]
 
 -- | Tests whether a list reads backwards identical to forwards.
 -- Examples:
@@ -46,7 +46,10 @@ reverseOf list = case list of
 -- >>> isPalindrome "123"
 -- False
 isPalindrome :: String -> Bool
-isPalindrome = (list == reverseOf list)
+isPalindrome xs
+        | xs == reverseOf xs = True
+        | otherwise = False
+isPalindrome "" = True
 
 -- | Tests whether each element is smaller or equal to the next element.
 -- Examples:
@@ -65,7 +68,7 @@ isPalindrome = (list == reverseOf list)
 isMonotonicallyIncreasing :: [Integer] -> Bool
 isMonotonicallyIncreasing list = case list of
    []         -> True
-   (_)        -> True
+   [x]        -> True
    i1: i2: is | i1 <= i2  -> isMonotonicallyIncreasing (i2: is)
               | otherwise -> False
 
@@ -99,7 +102,7 @@ normaliseVector vector = divideByScalar vector (norm vector)
          f: fs -> (f / scalar): (divideByScalar fs scalar)
 
       -- Calculates the norm (length) of a vector.
-      norm :: [Float] -> Float -> Float
+      norm :: [Float] -> Float
       norm vector' = sqrt (sumSqr vector')
          where
             -- Squares all elements in a vector
@@ -111,9 +114,9 @@ normaliseVector vector = divideByScalar vector (norm vector)
 
 -- | Calculates the ratio of the sums of two lists.
 listSumRatio :: [Float] -> [Float] -> Maybe Float
-listSumRatio vector1 vector2 i = case lengthOf vector2 of
-   0 -> Nothing
-   _ -> Just ((summation vector1) / (summation vector2))
+listSumRatio vector1 vector2
+   | lengthOf vector2 == 0 = Nothing
+   | otherwise = Just ((summation vector1) / (summation vector2))
 
 -- | Sums the elements in a list.
 summation :: [Float] -> Float
@@ -125,5 +128,6 @@ summation vector = case vector of
 -- prop> lengthOf list == length list
 lengthOf :: [Float] -> Int
 lengthOf list = case list of
-   otherwise -> 0
    _: cs     -> 1 + lengthOf cs
+   _ -> 0
+
