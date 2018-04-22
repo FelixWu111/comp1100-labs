@@ -2,12 +2,15 @@ module BinaryTree where
 
 data List a
   = Empty
-  | Cons a (List a)
+  | Cons a
+         (List a)
   deriving (Show, Eq)
 
 data BinaryTree a
   = Null
-  | Node a (BinaryTree a) (BinaryTree a)
+  | Node a
+         (BinaryTree a)
+         (BinaryTree a)
   deriving (Show, Eq)
 
 -- Exercise 1
