@@ -48,48 +48,6 @@ extra-source-files:  ChangeLog.md
 -- Constraint on the version of Cabal needed to build this package.
 cabal-version:       >=1.10
 
-library
-  -- Modules exported by the library.
-  exposed-modules:
-  
-  -- Modules included in this library but not exported.
-  -- other-modules:       
-  
-  -- LANGUAGE extensions used by modules in this package.
-  other-extensions:    OverloadedStrings
-
-  -- Other library packages from which modules are imported.
-  build-depends:       base >=4.10 && <4.11
-
-  -- Directories containing source files.
-  -- hs-source-dirs:      
-  
-  -- Base language which the package is written in.
-  default-language:    Haskell2010
-
-  hs-source-dirs:
-    Lab03,
-    Lab04,
-    Lab05,
-    Lab06,
-    Lab07,
-    Lab08
-
-  other-modules:
-    Boom,
-    Days,
-    Grades,
-    MaybeArithmetic,
-    CustomLists,
-    Lists,
-    Recursion,
-    Broken,
-    Polymorphic,
-    BinaryTree,
-    BinarySearchTree,
-    Expression,
-    RoseTree
-
 library NumWords
   build-depends:       base >=4.10 && <4.11
   default-language:    Haskell2010
@@ -195,7 +153,7 @@ library BinarySearchTree
   build-depends:       base >=4.10 && <4.11
   default-language:    Haskell2010
   hs-source-dirs:      Lab08
-  other-modules:       BinarySearchTree
+  other-modules:       BinaryTree, BinarySearchTree
 
 library RoseTree
   build-depends:       base >=4.10 && <4.11
