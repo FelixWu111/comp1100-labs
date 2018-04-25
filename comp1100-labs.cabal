@@ -84,6 +84,7 @@ executable Program
   default-language:    Haskell2010
   other-extensions:    OverloadedStrings
   build-depends:       base >=4.10 && <4.11, codeworld-api >=0.2.2.1 && <0.3
+  ghc-options:         -Wall -threaded
 
 executable TrafficLight
   main-is: TrafficLight.hs
@@ -91,6 +92,7 @@ executable TrafficLight
   default-language:    Haskell2010
   other-extensions:    OverloadedStrings
   build-depends:       base >=4.10 && <4.11, codeworld-api >=0.2.2.1 && <0.3
+  ghc-options:         -Wall -threaded
 
 executable Tree
   main-is: Tree.hs
@@ -98,6 +100,7 @@ executable Tree
   default-language:    Haskell2010
   other-extensions:    OverloadedStrings
   build-depends:       base >=4.10 && <4.11, codeworld-api >=0.2.2.1 && <0.3
+  ghc-options:         -Wall -threaded
 
 executable TreeBlooming
   main-is: TreeBlooming.hs
@@ -105,6 +108,7 @@ executable TreeBlooming
   default-language:    Haskell2010
   other-extensions:    OverloadedStrings
   build-depends:       base >=4.10 && <4.11, codeworld-api >=0.2.2.1 && <0.3
+  ghc-options:         -Wall -threaded
 
 executable TreeWaving
   main-is: TreeWaving.hs
@@ -112,6 +116,7 @@ executable TreeWaving
   default-language:    Haskell2010
   other-extensions:    OverloadedStrings
   build-depends:       base >=4.10 && <4.11, codeworld-api >=0.2.2.1 && <0.3
+  ghc-options:         -Wall -threaded
 
 library CustomLists
   build-depends:       base >=4.10 && <4.11
