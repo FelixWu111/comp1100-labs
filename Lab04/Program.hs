@@ -1,4 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
+
 import CodeWorld
 
 botCircle, topCircle :: Color -> Picture
