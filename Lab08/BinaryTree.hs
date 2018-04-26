@@ -1,4 +1,11 @@
-module BinaryTree where
+module BinaryTree (
+      BinaryTree (Null, Node),
+      treeSize,     -- :: Integral b => BinaryTree a -> b
+      treeDepth,    -- :: Integral b => BinaryTree a -> b
+      treeFlatten,  -- :: BinaryTree a -> [a]
+      treeLeaves    -- :: BinaryTree a -> [a]
+) where
+
 
 data List a
   = Empty
@@ -25,16 +32,26 @@ tree1 =
 
 -- Exercise 1
 treeSize :: Integral b => BinaryTree a -> b
-treeSize = undefined -- TODO
+treeSize x = case x of
+               Null -> 0
+               Node _ a b -> 1 + treeSize a + treeSize b
+
 
 treeDepth :: Integral b => BinaryTree a -> b
-treeDepth = undefined -- TODO
+treeDepth x = case x of
+               Null -> 0
+               Node _ a b -> 1 + max (treeDepth a)  (treeDepth b)
 
 treeFlatten :: BinaryTree a -> [a]
-treeFlatten = undefined -- TODO
+treeFlatten x = case x of
+               Null -> []
+               Node a b c -> [a] ++ treeFlatten b ++ treeFlatten c
 
 treeLeaves :: BinaryTree a -> [a]
-treeLeaves = undefined -- TODO
+treeLeaves x = case x of
+               Null -> []
+               Node a Null Null -> [a]
+               Node _ b c -> treeLeaves b ++ treeLeaves c
 
 -- Exercise 2
 treeMap :: (a -> b) -> BinaryTree a -> BinaryTree b
