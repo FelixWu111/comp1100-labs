@@ -46,6 +46,7 @@ reverseSign m = -m
 --
 -- >>> applyFunctionOverList reverseSign [1,2,3]
 -- [-1,-2,-3]
+applyFunctionOverList :: (Integer -> Integer) -> [Integer] -> [Integer]
 applyFunctionOverList = undefined -- TODO
 
 -- | selectWhereTrue
@@ -64,12 +65,12 @@ isNegative x = x < 0.0
 isPositive :: Double -> Bool
 isPositive x = x > 0.0
 
--- | generalLength
-generalLength :: Integral b => [a] -> b
-generalLength list =
+-- | polymorphicLength
+polymorphicLength :: Integral b => [a] -> b
+polymorphicLength list =
   case list of
     [] -> 0
-    _:xs -> 1 + generalLength xs
+    _:xs -> 1 + polymorphicLength xs
 
 -- | applyFunction'
 applyFunction' :: (a -> Integer) -> a -> Integer
@@ -117,10 +118,7 @@ combineElementsIntoTuples' = undefined -- TODO
 -- >>> foldRight (-) 0 [1,2,3,4,5]
 -- 3
 foldRight :: (a -> b -> b) -> b -> [a] -> b -- predefined as foldr
-foldRight operation identity list =
-  case list of
-    [] -> identity
-    x:xs -> x `operation` foldRight operation identity xs
+foldRight operation identity list = undefined -- TODO
 
 -- | foldLeft
 -- Examples:
@@ -136,42 +134,43 @@ foldRight operation identity list =
 -- The following property does not hold:
 -- prop> foldLeft (-) 0 xs == foldRight (-) 0 xs
 foldLeft :: (b -> a -> b) -> b -> [a] -> b -- predefined as foldl
-foldLeft operation identity list =
-  case list of
-    [] -> identity
-    x:xs -> foldLeft operation (identity `operation` x) xs
+foldLeft operation identity list = undefined -- TODO
 
 -- | Reimplement sum using foldLeft or foldRight
 -- TODO
 sum :: Num a => [a] -> a
 sum list =
   case list of
-    [] -> 0
+    [] -> identity
     x:xs -> x + sum xs
+      where identity = 0
 
 -- | Reimplement product using foldLeft or foldRight
 -- TODO
 product :: Num a => [a] -> a
 product list =
   case list of
-    [] -> 1
+    [] -> identity
     x:xs -> x * product xs
+      where identity = 1
 
 -- | Reimplement allTrue using foldLeft or foldRight
 -- TODO
 allTrue :: [Bool] -> Bool
 allTrue list =
   case list of
-    [] -> True
+    [] -> identity
     b:bs -> b && allTrue bs
+      where identity = True
 
 -- | Reimplement anyTrue using foldLeft or foldRight
 -- TODO
 anyTrue :: [Bool] -> Bool
 anyTrue list =
   case list of
-    [] -> False
+    [] -> identity
     b:bs -> b || anyTrue bs
+      where identity = False
 
 -- | convertToLower
 convertToLower = undefined -- TODO
