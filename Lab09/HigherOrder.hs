@@ -143,7 +143,7 @@ sum list =
   case list of
     [] -> identity
     x:xs -> x + sum xs
-      where identity = 0
+    where identity = 0
 
 -- | Reimplement product using foldLeft or foldRight
 -- TODO
@@ -152,7 +152,7 @@ product list =
   case list of
     [] -> identity
     x:xs -> x * product xs
-      where identity = 1
+    where identity = 1
 
 -- | Reimplement allTrue using foldLeft or foldRight
 -- TODO
@@ -161,7 +161,7 @@ allTrue list =
   case list of
     [] -> identity
     b:bs -> b && allTrue bs
-      where identity = True
+    where identity = True
 
 -- | Reimplement anyTrue using foldLeft or foldRight
 -- TODO
@@ -170,7 +170,7 @@ anyTrue list =
   case list of
     [] -> identity
     b:bs -> b || anyTrue bs
-      where identity = False
+    where identity = False
 
 -- | convertToLower
 convertToLower = undefined -- TODO
