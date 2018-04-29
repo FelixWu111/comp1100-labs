@@ -57,6 +57,7 @@ applyFunctionOverList = undefined -- TODO
 --
 -- >>> selectWhereTrue isPositive [0.0, 1.0, -1.0, -9.2, 3.0]
 -- [1.0, 3.0]
+selectWhereTrue :: (Double -> Bool) -> [Double] -> [Double]
 selectWhereTrue = undefined -- TODO
 
 isNegative :: Double -> Bool
@@ -193,7 +194,18 @@ isSquare :: Integral a => a -> Bool
 isSquare i = floor (sqrt (fromIntegral i) :: Float) ^ (2 :: Int) == i
 
 -- | sumOfSquaresUpTo
+-- Example:
+--
+-- >>> sumOfSquaresUpTo 1000
+-- 10416
 sumOfSquaresUpTo = undefined -- TODO
+
+-- | largestSquareSmallerThan
+-- Example:
+--
+-- >>> largestSquareSmallerThan 1000
+-- 961
+largestSquareSmallerThan = undefined -- TODO
 
 -- | isPrime
 -- Examples:
