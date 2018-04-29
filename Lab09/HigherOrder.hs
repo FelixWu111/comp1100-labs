@@ -1,6 +1,6 @@
 module HigherOrder where
 
-import Prelude hiding (sum,product)
+import Prelude hiding (product, sum)
 
 {-# ANN module ("HLint: ignore Eta reduce" :: String) #-}
 
@@ -119,7 +119,7 @@ combineElementsIntoTuples' = undefined -- TODO
 -- >>> foldRight (-) 0 [1,2,3,4,5]
 -- 3
 foldRight :: (a -> b -> b) -> b -> [a] -> b -- predefined as foldr
-foldRight operation identity list = undefined -- TODO
+foldRight f e xs = undefined -- TODO
 
 -- | foldLeft
 -- Examples:
@@ -135,43 +135,47 @@ foldRight operation identity list = undefined -- TODO
 -- The following property does not hold:
 -- prop> foldLeft (-) 0 xs == foldRight (-) 0 xs
 foldLeft :: (b -> a -> b) -> b -> [a] -> b -- predefined as foldl
-foldLeft operation identity list = undefined -- TODO
+foldLeft f e xs = undefined -- TODO
 
 -- | Reimplement sum using foldLeft or foldRight
 -- TODO
 sum :: Num a => [a] -> a
 sum list =
   case list of
-    [] -> identity
-    x:xs -> x + sum xs
-    where identity = 0
+    [] -> e
+    x:xs -> (+) x (sum xs)
+  where
+    e = 0
 
 -- | Reimplement product using foldLeft or foldRight
 -- TODO
 product :: Num a => [a] -> a
 product list =
   case list of
-    [] -> identity
-    x:xs -> x * product xs
-    where identity = 1
+    [] -> e
+    x:xs -> (*) x (product xs)
+  where
+    e = 1
 
 -- | Reimplement allTrue using foldLeft or foldRight
 -- TODO
 allTrue :: [Bool] -> Bool
 allTrue list =
   case list of
-    [] -> identity
-    b:bs -> b && allTrue bs
-    where identity = True
+    [] -> e
+    b:bs -> (&&) b (allTrue bs)
+  where
+    e = True
 
 -- | Reimplement anyTrue using foldLeft or foldRight
 -- TODO
 anyTrue :: [Bool] -> Bool
 anyTrue list =
   case list of
-    [] -> identity
-    b:bs -> b || anyTrue bs
-    where identity = False
+    [] -> e
+    b:bs -> (||) b (anyTrue bs)
+  where
+    e = False
 
 -- | convertToLower
 convertToLower = undefined -- TODO
