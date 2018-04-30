@@ -27,7 +27,7 @@ flipArguments func doubleValue integerValue = func integerValue doubleValue
 
 -- | applyFunction
 applyFunction :: (Integer -> Integer) -> Integer -> Integer
-applyFunction = undefined -- TODO
+applyFunction func integerValue = func integerValue
 
 double :: Integer -> Integer
 double m = 2 * m
@@ -47,7 +47,10 @@ reverseSign m = -m
 -- >>> applyFunctionOverList reverseSign [1,2,3]
 -- [-1,-2,-3]
 applyFunctionOverList :: (Integer -> Integer) -> [Integer] -> [Integer]
-applyFunctionOverList = undefined -- TODO
+applyFunctionOverList fuc x = case x of
+                      [] -> []
+                      (x:xs) -> fuc x : applyFunctionOverList fuc xs
+
 
 -- | selectWhereTrue
 -- Examples:
@@ -58,7 +61,11 @@ applyFunctionOverList = undefined -- TODO
 -- >>> selectWhereTrue isPositive [0.0, 1.0, -1.0, -9.2, 3.0]
 -- [1.0, 3.0]
 selectWhereTrue :: (Double -> Bool) -> [Double] -> [Double]
-selectWhereTrue = undefined -- TODO
+selectWhereTrue fuc x = case x of
+                  [] -> []
+                  (x:xs)
+                        |fuc x  -> x: selectWhereTrue fuc xs
+                        |not(fuc x) -> selectWhereTrue fuc xs
 
 isNegative :: Double -> Bool
 isNegative x = x < 0.0
@@ -82,10 +89,18 @@ applyFunction'' :: (a -> b) -> a -> b
 applyFunction'' f x = f x
 
 -- | applyFunctionOverList'
-applyFunctionOverList' = undefined -- TODO
+applyFunctionOverList' :: (a -> b) -> [a] -> [b]
+applyFunctionOverList' f x = case x of
+                           [] -> []
+                           (x:xs) -> f x : applyFunctionOverList' f xs
 
 -- | selectWhereTrue'
-selectWhereTrue' = undefined -- TODO
+selectWhereTrue' :: (a -> Bool) -> [a] -> [a]
+selectWhereTrue' f x = case x of
+                 [] -> []
+                 (x:xs)
+                    | f x -> x:selectWhereTrue' f xs
+                    |not(f x) -> selectWhereTrue' f xs
 
 -- | combineListsWithBinaryOperation
 -- Examples:
@@ -98,7 +113,14 @@ selectWhereTrue' = undefined -- TODO
 --
 -- >>> combineListsWithBinaryOperation div [1..10] [-10..0]
 -- [-1, -1, -1, -1, -1, -2, -2, -3, -5, -10]
-combineListsWithBinaryOperation = undefined -- TODO
+combineListsWithBinaryOperation :: [a->a->a] -> [a] -> [a] -> [a]
+combineListsWithBinaryOperation f  a b = case a of
+                               [] -> case b of
+                                           [] -> []
+                                           (y:ys)-> (y:ys)
+                               (x:xs) -> case b of
+                                           [] -> (x:xs)
+                                           (y:ys) -> f x y : combineListsWithBinaryOperation f xs ys
 
 -- | combineElementsIntoTuples
 combineElementsIntoTuples :: [a] -> [b] -> [(a, b)]
