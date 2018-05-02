@@ -55,10 +55,10 @@ applyFunctionOverList = undefined -- TODO
 -- Examples:
 --
 --  >>> selectWhereTrue isNegative [0.0, 1.0, -1.0, -9.2, 3.0]
--- [-1.0, -9.2]
+-- [-1.0,-9.2]
 --
 -- >>> selectWhereTrue isPositive [0.0, 1.0, -1.0, -9.2, 3.0]
--- [1.0, 3.0]
+-- [1.0,3.0]
 selectWhereTrue :: (Double -> Bool) -> [Double] -> [Double]
 selectWhereTrue = undefined -- TODO
 
