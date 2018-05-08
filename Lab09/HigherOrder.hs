@@ -2,7 +2,9 @@ module HigherOrder where
 
 import Prelude hiding (product, sum)
 import Data.Char
-
+{-# ANN module ("HLint: ignore Unnecessary hiding"::String) #-}
+{-# ANN module ("HLint: ignore Use sum"::String) #-}
+{-# ANN module ("HLint: ignore Use product"::String) #-}
 {-# ANN module ("HLint: ignore Eta reduce" :: String) #-}
 
 -- | isEqual
@@ -55,10 +57,10 @@ applyFunctionOverList fuc x = map fuc x
 -- Examples:
 --
 --  >>> selectWhereTrue isNegative [0.0, 1.0, -1.0, -9.2, 3.0]
--- [-1.0, -9.2]
+-- [-1.0,-9.2]
 --
 -- >>> selectWhereTrue isPositive [0.0, 1.0, -1.0, -9.2, 3.0]
--- [1.0, 3.0]
+-- [1.0,3.0]
 selectWhereTrue :: (Double -> Bool) -> [Double] -> [Double]
 selectWhereTrue fuc x = case x of
                   [] -> []
