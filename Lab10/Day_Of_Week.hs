@@ -1,6 +1,6 @@
 -- File name: Day_Of_Week.hs
--- Author: <your name>, u<your uni id>
--- Date: <today's date>
+-- Author: <Yu Wu>, u<u6250866>
+-- Date: <10.5.2018>
 -- Description: Provides functions to assist in calculating
 --              the day of the week.
 module Day_Of_Week where
@@ -30,7 +30,8 @@ days_since_1_January_0 (Date day month year) =
   days_in_previous_months month year +
   days_before_this_year year
 
-previous_days_this_month = undefined --TODO
+previous_days_this_month :: Day -> Natural
+previous_days_this_month day = from_Positive_to_Natural day - 1
 
 days_in_previous_months :: Month -> Year -> Natural
 days_in_previous_months month year =
@@ -42,10 +43,17 @@ days_in_previous_months month year =
       | is_leap_year year = 29
       | otherwise = 28
 
-is_leap_year = undefined --TODO
+is_leap_year :: Year -> Bool
+is_leap_year year = mod year 4 == 0 && (mod year 100 /= 0 || mod year 400 == 0)
 
-days_before_this_year = undefined --TODO
+days_before_this_year :: Year ->Natural
+days_before_this_year year = (leap_years_since_1_January_0 year*366) + (year - leap_years_since_1_January_0 year)*365
+
+leap_years_since_1_January_0 :: Year -> Natural
+leap_years_since_1_January_0 year = case year of
+    0 -> 0
+    _ -> 1 + pre_year `quot` 4 - pre_year `quot` 100 + pre_year `quot` 400
+        where pre_year = year - 1
 
 day_of_week :: Date -> Days
-day_of_week = undefined --TODO
-
+day_of_week date = iso_day_no_to_name $ from_Natural_to_Positive (mod (days_since_1_January_0 date) 7) - 1

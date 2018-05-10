@@ -1,6 +1,6 @@
 -- File/Module name: Dates (.hs)
--- Author: <your name>, u<your uni id>
--- Date: <today's date>
+-- Author: <Yu Wu>, u<u6250866>
+-- Date: <10.5.2018>
 -- Description: Provides types, names and functions for dates.
 module Dates
   ( Date(Date, day', month', year')
