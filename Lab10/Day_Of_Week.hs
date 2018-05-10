@@ -44,16 +44,20 @@ days_in_previous_months month year =
       | otherwise = 28
 
 is_leap_year :: Year -> Bool
-is_leap_year year = mod year 4 == 0 && (mod year 100 /= 0 || mod year 400 == 0)
+is_leap_year year = year `mod` 4 == 0 && (mod year 100 /= 0 || mod year 400 == 0)
 
 days_before_this_year :: Year ->Natural
-days_before_this_year year = (leap_years_since_1_January_0 year*366) + (year - leap_years_since_1_January_0 year)*365
-
-leap_years_since_1_January_0 :: Year -> Natural
-leap_years_since_1_January_0 year = case year of
-    0 -> 0
-    _ -> 1 + pre_year `quot` 4 - pre_year `quot` 100 + pre_year `quot` 400
-        where pre_year = year - 1
+days_before_this_year year = (leap_years year*366) + (year - leap_years year)*365
+      where leap_years :: Year -> Natural
+            leap_years year = case year of
+                                0 -> 0
+                                _ -> 1 + pre_year `quot` 4 - pre_year `quot` 100 + pre_year `quot` 400
+                                       where pre_year = year - 1
 
 day_of_week :: Date -> Days
-day_of_week date = iso_day_no_to_name $ from_Natural_to_Positive (mod (days_since_1_January_0 date) 7) - 1
+day_of_week date = iso_day_no_to_name (asdf date)
+                   where asdf :: Date -> Positive
+                         asdf date'
+                          |mod (days_since_1_January_0 date') 7 == 1 = 7
+                          |mod (days_since_1_January_0 date') 7 == 0 = 6
+                          |otherwise = from_Natural_to_Positive (mod (days_since_1_January_0 date') 7)-1
