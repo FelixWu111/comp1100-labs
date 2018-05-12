@@ -1,8 +1,10 @@
 module BinaryTreeTests where
 
 import BinaryTree
-import BinaryTreeTestGenerator ()
 import Test.QuickCheck
+
+instance Arbitrary a => Arbitrary (BinaryTree a) where
+  arbitrary = oneof [pure Null, Node <$> arbitrary <*> arbitrary <*> arbitrary]
 
 -- | A binary tree has size equal to its length when flattened
 -- prop> prop_unflattenedSize

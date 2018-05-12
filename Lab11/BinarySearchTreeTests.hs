@@ -1,10 +1,14 @@
 module BinarySearchTreeTests where
 
 import BinarySearchTree
-import BinarySearchTreeTestGenerator ()
 import BinaryTree
 import Data.List (nub)
 import Test.QuickCheck
+
+instance (Ord a, Arbitrary a) => Arbitrary (BinaryTree a) where
+  arbitrary = sized genTree
+    where
+      genTree n = fmap (foldr treeInsert Null) (vector n)
 
 -- | A BST has size equal to its length when flattened
 -- prop> prop_unflattenedSize
