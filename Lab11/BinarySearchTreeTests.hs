@@ -37,7 +37,7 @@ prop_addMinMaxElements tree =
   tree == treeInsert (treeMaximum tree) (treeInsert (treeMinimum tree) tree)
 
 -- | A BST has distinct elements
--- prop> prop_distinctElememts
+-- prop> prop_distinctElements
 prop_distinctElements :: String -> Bool
 prop_distinctElements list =
   length (nub list) == length (treeFlattenOrdered (insertListToTree list Null))
@@ -48,7 +48,7 @@ prop_distinctElements list =
         x:xs -> treeInsert x (insertListToTree xs tree)
 
 -- | A BST has a number of constraints
--- prop> prop_isValidSearchTree
+-- prop> prop_isValidBinarySearchTree
 prop_isValidBinarySearchTree :: BinarySearchTree Char -> Bool
 prop_isValidBinarySearchTree tree = checkTreeBounds tree Nothing Nothing
   where
