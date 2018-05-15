@@ -1,9 +1,10 @@
 module BinaryTree (
-      BinaryTree (Null, Node),
-      treeSize,     -- :: Integral b => BinaryTree a -> b
-      treeDepth,    -- :: Integral b => BinaryTree a -> b
-      treeFlatten,  -- :: BinaryTree a -> [a]
-      treeLeaves    -- :: BinaryTree a -> [a]
+  BinaryTree (Null, Node),
+  treeSize,      -- :: (Integral b) => BinaryTree a -> b
+  treeDepth,     -- :: (Integral b) => BinaryTree a -> b
+  treeFlatten ,  -- :: BinaryTree a -> [a]
+  treeLeaves,    -- :: BinaryTree a -> [a]
+  treeMap        -- :: (a->b) -> BinaryTree a - > BinaryTree b
 ) where
 
 
